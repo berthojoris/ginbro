@@ -12,10 +12,10 @@
     go get github.com/jinzhu/gorm
     
 ## Usage
-- [swagger DOC ](http://127.0.0.1:77/swagger/)`http://127.0.0.1:77/swagger/`
-- [static ](http://127.0.0.1:77)`http://127.0.0.1:77`
-- [app INFO ](http://127.0.0.1:77/app/info)`http://127.0.0.1:77/app/info`
-- API baseURL : `http://127.0.0.1:77/api/v1`
+- [swagger DOC ](http://127.0.0.1:8800/swagger/)`http://127.0.0.1:8800/swagger/`
+- [static ](http://127.0.0.1:8800)`http://127.0.0.1:8800`
+- [app INFO ](http://127.0.0.1:8800/app/info)`http://127.0.0.1:8800/app/info`
+- API baseURL : `http://127.0.0.1:8800/api/v1`
 
 ## Info
 - table'schema which has no "ID","id","Id'" or "iD" will not generate model or route.
