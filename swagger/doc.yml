@@ -1,0 +1,392 @@
+swagger: "2.0"
+info:
+  description: "A GinBro RESTful APIs"
+  version: "1.0.0"
+  title: "GinBro RESTful APIs Application"
+host: "127.0.0.1:8800"
+basePath: "/api/v1"
+
+schemes:
+- "http"
+paths:
+  
+  
+  /order:
+    get:
+      tags:
+      - "order"
+      summary: "get all order by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/OrderPagination"
+    post:
+      tags:
+      - "order"
+      summary: "create order"
+      description: "create order"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create order"
+        required: true
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "order"
+      summary: "update order"
+      description: "update order"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create order"
+        required: true
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /order/{Id}:
+    get:
+      tags:
+      - "order"
+      summary: "get a order by ID"
+      description: "get a order by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of order to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+    delete:
+      tags:
+      - "order"
+      summary: "Destroy a order by ID"
+      description: "delete a order by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of order to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /order-detail:
+    get:
+      tags:
+      - "order-detail"
+      summary: "get all order-detail by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/OrderDetailPagination"
+    post:
+      tags:
+      - "order-detail"
+      summary: "create order-detail"
+      description: "create order-detail"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create order-detail"
+        required: true
+        schema:
+          $ref: "#/definitions/OrderDetail"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "order-detail"
+      summary: "update order-detail"
+      description: "update order-detail"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create order-detail"
+        required: true
+        schema:
+          $ref: "#/definitions/OrderDetail"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /order-detail/{Id}:
+    get:
+      tags:
+      - "order-detail"
+      summary: "get a order-detail by ID"
+      description: "get a order-detail by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of order-detail to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/OrderDetail"
+    delete:
+      tags:
+      - "order-detail"
+      summary: "Destroy a order-detail by ID"
+      description: "delete a order-detail by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of order-detail to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+
+
+definitions:
+  
+  
+  Order:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      total:
+        type: "number"
+        description: ""
+        format: "float"
+      
+  OrderPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Order"
+
+  
+  OrderDetail:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      order_id:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      item_id:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      item_name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      item_price:
+        type: "number"
+        description: ""
+        format: "float"
+      
+  OrderDetailPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/OrderDetail"
+
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
