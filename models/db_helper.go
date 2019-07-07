@@ -41,7 +41,7 @@ func crudAll(m interface{}, q *PaginationQuery, list interface{}) (total uint, e
 	if q.Limit <= 0 {
 		q.Limit = 15
 	}
-	err = tx.Limit(q.Limit).Find(list).Error
+	err = tx.Limit(q.Limit).Preload("OrderDetail").Find(list).Error
 	return
 }
 
