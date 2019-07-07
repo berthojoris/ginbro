@@ -7,10 +7,14 @@ import (
 
 var _ = time.Thursday
 
+// Validation :
+// https://github.com/gin-gonic/gin#model-binding-and-validation
+// https://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags
+
 //Order
 type Order struct {
-	Id    uint    `gorm:"column:id" form:"id" json:"id" comment:"" sql:"int(10),PRI"`
-	Total float64 `gorm:"column:total" form:"total" json:"total" comment:"" sql:"double"`
+	Id          uint          `gorm:"column:id" form:"id" json:"id" comment:"" sql:"int(10),PRI"`
+	Total       float64       `gorm:"column:total" form:"total" json:"total" comment:"" sql:"double"`
 	OrderDetail []OrderDetail `gorm:"foreignkey:OrderID" json:"detail_order"`
 }
 

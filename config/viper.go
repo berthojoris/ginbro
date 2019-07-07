@@ -1,10 +1,11 @@
 package config
 
 import (
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
 	"os"
 	"time"
+
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 func init() {
@@ -28,7 +29,7 @@ func setLogrus() {
 	logrus.SetLevel(lvl)
 	logrus.RegisterExitHandler(logrusFatalErrorHandler)
 	logrus.SetFormatter(&logrus.JSONFormatter{})
-	date := time.Now().Format("2006-01-02-app.log")
+	date := time.Now().Format("storage/2006-01-02-app.log")
 	f, err := os.OpenFile(date, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		logrus.Fatal(err)
