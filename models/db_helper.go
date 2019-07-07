@@ -52,6 +52,13 @@ func crudOne(m interface{}, one interface{}) (err error) {
 	return nil
 }
 
+func crudOneRelated(m interface{}, one interface{}) (err error) {
+	if mysqlDB.Where(m).Preload("OrderDetail").First(one).RecordNotFound() {
+		return errors.New("resource is not found")
+	}
+	return nil
+}
+
 func crudUpdate(m interface{}, where interface{}) (err error) {
 	db := mysqlDB.Model(where).Updates(m)
 	if err = db.Error; err != nil {

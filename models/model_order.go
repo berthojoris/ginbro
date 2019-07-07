@@ -11,6 +11,7 @@ var _ = time.Thursday
 type Order struct {
 	Id    uint    `gorm:"column:id" form:"id" json:"id" comment:"" sql:"int(10),PRI"`
 	Total float64 `gorm:"column:total" form:"total" json:"total" comment:"" sql:"double"`
+	OrderDetail []OrderDetail `gorm:"foreignkey:OrderID" json:"detail_order"`
 }
 
 //TableName
@@ -21,7 +22,7 @@ func (m *Order) TableName() string {
 //One
 func (m *Order) One() (one *Order, err error) {
 	one = &Order{}
-	err = crudOne(m, one)
+	err = crudOneRelated(m, one)
 	return
 }
 
